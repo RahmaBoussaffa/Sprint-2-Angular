@@ -1,0 +1,35 @@
+<div class="container">
+    <div>
+        <h2>Modifier un Photo:</h2>
+    </div>
+    <form>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>ID Photo</label>
+            <input readonly type="text" [(ngModel)]="currentPhoto.idPhoto" name="idPhoto" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Nom Photo</label>
+            <input type="text" [(ngModel)]="currentPhoto.nomPhoto" name="nomPhoto" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Prix Photo</label>
+            <input type="number" [(ngModel)]="currentPhoto.prixPhoto" name="prixPhoto" class="form-control">
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Date création</label>
+            <input type="date" [ngModel]="currentPhoto.dateCreation | date: 'yyyy-MM-dd'" (ngModelChange)=" currentPhoto.dateCreation= $event" name="dateCreation" class="form-control">
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Photographe</label>
+            <select class="form-control form-control-lg" id="idPhot" name="idphot"
+            [(ngModel)]="idPhot" (change)="onChange()">
+                <option *ngFor="let phot of photographes" [value]="phot.idPhot" >{{phot.nomPhot}}</option>
+            </select>
+        </div>
+        <div class="mt-2">
+            <button type="submit" (click)="updatePhoto()" class="btn btn-success">Modifer</button>
+        </div>
+    </form>
+</div>

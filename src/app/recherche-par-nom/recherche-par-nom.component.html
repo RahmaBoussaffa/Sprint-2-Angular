@@ -1,0 +1,33 @@
+<div class="container">
+    <label>Nom Photo </label>
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+        <input type="text" name="nomf" class="form-control form-control-lg" [(ngModel)]= "nomPhoto" placeholder="recherche par nom photo">
+    </div>
+</div>
+<div class="container">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr> 
+                    <th>Id</th>
+                    <th>Nom</th> 
+                    <th>Prix</th> 
+                    <th>Date Création</th>
+                    <th>photographe</th> 
+                    <th colspan="2" *ngIf = "authService.isAdmin()" >Actions</th>
+                </tr>
+                <tbody *ngFor="let photo of photos |filter:nomPhoto">
+                    <tr >
+                        <td>{{photo.idPhoto}}</td>
+                        <td>{{photo.nomPhoto}}</td>
+                        <td>{{photo.prixPhoto}}</td>
+                        <td>{{photo.dateCreation | date:'dd/MM/yyyy'}}</td>
+                        <td>{{photo.photographe.nomPhot}}</td>
+                        <td><a *ngIf = "authService.isAdmin()" class="btn btn-danger" (click)="supprimerPhoto(photo)">Supprimer</a></td>
+                        <td><a *ngIf = "authService.isAdmin()" class="btn btn-success" [routerLink]="['/updatePhoto',photo.idPhoto]">Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
